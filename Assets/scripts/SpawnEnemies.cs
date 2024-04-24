@@ -3,56 +3,94 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SpawnEnemies : MonoBehaviour
+public class SpawnEnemies : PickupManager
 {
     public GameObject[] enemyPrefab;
     public Transform[] enemySpawns;
     public int maxEnemies;
     public float spawnDelay = 2f;
-    private int totalEnemies;
-    private List<GameObject> spawnedEnemies = new List<GameObject>(); // Initialize the list
+    protected static int totalEnemies;
+    protected List<GameObject> spawnedEnemies = new List<GameObject>();
+    public float enemyHealth = 15;
+    public GameObject fireParticleSystemPrefab; // Prefab of the fire particle system
+    private int explosionForce = 5000;
+    private Transform player;
 
-    private Transform player; // Use Transform instead of GameObject
-
-    // Start is called before the first frame update
+    private GameObject firePrefab;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform; // gets player tag
-        StartCoroutine(SpawnEnemyRoutine()); // Start coroutine for spawning enemies
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        StartCoroutine(EnemySpawner());
     }
 
-    IEnumerator SpawnEnemyRoutine()
+    IEnumerator EnemySpawner()
     {
-        while (totalEnemies < maxEnemies)
+        while (true)
         {
-            GameObject enemy = Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], enemySpawns[Random.Range(0, enemySpawns.Length)]);
-            spawnedEnemies.Add(enemy);
-            totalEnemies++;
+            yield return new WaitForSeconds(spawnDelay);
+            if (totalEnemies < maxEnemies)
+            {
+                GameObject enemy = Instantiate(enemyPrefab[Random.Range(0, enemyPrefab.Length)], enemySpawns[Random.Range(0, enemySpawns.Length)]);
+                spawnedEnemies.Add(enemy);
+                totalEnemies++;
+
+                // Randomize color accents of enemies between red and blue
+                Renderer renderer = enemy.GetComponent<Renderer>();
+                Material material = renderer.material;
+                Color randomColor = Random.ColorHSV(.75f, 1f, 1f, .5f, 0.95f, 1f);
+                material.color = randomColor;
 
 
-
-            //randomize colour accents of enemies between red and blue
-            Renderer renderer = enemy.GetComponent<Renderer>();
-            
-            Material material = renderer.material;
-            
-            Color randomColor = Random.ColorHSV(.75f, 1f, 1f, .5f, 0.95f, 1f); 
-            
-            material.color = randomColor;
-
-
-            yield return new WaitForSeconds(spawnDelay); 
+            }
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-        foreach (GameObject enemy in spawnedEnemies)
+        List<GameObject> enemiesCopy = new List<GameObject>(spawnedEnemies);
+        foreach (GameObject enemy in enemiesCopy)
         {
-            NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
-            agent.SetDestination(player.position);
+            if (enemy == null)
+            {
+                spawnedEnemies.Remove(enemy);
+            }
+            else
+            {
+                NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
+                agent.SetDestination(player.position);
+
+
+                if (onFire)
+                {
+                    if (enemy.transform.childCount == 0)
+                    {
+                        firePrefab = Instantiate(fireParticleSystemPrefab, enemy.transform.position + new Vector3(0f, .5f, 0f), Quaternion.identity);
+                        firePrefab.transform.parent = enemy.transform;
+                    }
+
+                    enemyHealth -= .003f;
+                }
+                else
+                {
+                    if (enemy.transform.childCount != 0)
+                    {
+                        Destroy(enemy.transform.GetChild(0).gameObject);
+                    }
+                }
+                if(nukeUsed)
+                {
+                    // nav mesh agent direction
+                    Vector3 direction = agent.velocity.normalized;
+
+                    // inverted direction(away from player)
+                    Vector3 inverseDirection = -direction;
+
+                    // add force away from player
+                    agent.GetComponent<Rigidbody>().AddForce(inverseDirection * explosionForce * Time.deltaTime, ForceMode.Impulse);
+                }
+
+
+            }
         }
     }
 }

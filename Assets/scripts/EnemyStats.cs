@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public float impactForce;
+    
     // Start is called before the first frame update
     void Start()
     {

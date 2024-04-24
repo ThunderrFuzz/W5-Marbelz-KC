@@ -5,16 +5,20 @@ public class GameManager : MonoBehaviour
 {
     public Transform[] spawnPoints;
     private Vector3 initialPlayerPosition; 
-    protected int deathCount = 0; 
+    protected int deathCount = 0;
+    protected bool gameLost;
 
+
+    ScoreingSystem score;
     void Start()
     {
         initialPlayerPosition = Vector3.zero;
+        score = FindObjectOfType<ScoreingSystem>();
     }
 
     public void Fall_Det_Reset(Transform playerTransform)
     {
-        if (playerTransform.position.y < -5f)
+        if (playerTransform.position.y < -8f)
         {
             RecordDeath();
             ResetPlayer(playerTransform);
@@ -22,9 +26,10 @@ public class GameManager : MonoBehaviour
     }
 
     
-    private void RecordDeath()
+    public void RecordDeath()
     {
         deathCount++;
+        score.TakeScore(deathCount*5);
         Debug.Log("Player died! Deaths: " + deathCount);
     }
 
