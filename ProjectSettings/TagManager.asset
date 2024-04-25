@@ -17,6 +17,8 @@ TagManager:
   - Secret
   - Projectile
   - Despawner
+  - PickupSpawns
+  - Shield
   layers:
   - Default
   - TransparentFX
