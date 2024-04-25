@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3352934}
   - component: {fileID: 2331524}
   - component: {fileID: 3883063195981214792}
+  - component: {fileID: 4256607800031565357}
   m_Layer: 0
   m_Name: PowerIcon
   m_TagString: Speedup
@@ -106,3 +107,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 44cb397c8b73c2f40bfa05c2199ffa2b, type: 3}
+--- !u!114 &4256607800031565357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff1b85a169b166489c26543be33dc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  bobSpeed: 0.2
+  bobHeight: 0.5

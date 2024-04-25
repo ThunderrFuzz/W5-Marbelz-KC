@@ -23,7 +23,7 @@ public class ScoreingSystem : PickupManager
         scoreMult = activeScoreX ? 2 : 1;
 
         // add time survived onto score
-        float timeSurvived = Time.time - startTime;
+        float timeSurvived = Time.time;
         int timeScore = Mathf.RoundToInt(timeSurvived / 50000); // Convert time float to int
         totalScore += timeScore * scoreMult;
 

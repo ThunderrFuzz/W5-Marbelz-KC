@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3363052}
   - component: {fileID: 2358098}
   - component: {fileID: 1698772790303532153}
+  - component: {fileID: 3596938775740478081}
   m_Layer: 0
   m_Name: GoldCupIcon
   m_TagString: ScoreMulti
@@ -106,3 +107,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 823dde28ac754a14380d87d04313647b, type: 3}
+--- !u!114 &3596938775740478081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff1b85a169b166489c26543be33dc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  bobSpeed: 0.2
+  bobHeight: 0.5

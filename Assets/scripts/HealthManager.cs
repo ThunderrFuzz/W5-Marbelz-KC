@@ -4,11 +4,13 @@ using UnityEngine.UI;
 
 public class HealthManager : GameManager
 {
-    public int health;
+    public static int health;
     public TMP_Text healthText;
-
+    
     void Start()
     {
+        
+        health = 50;
         UpdateHealthUI();
     }
 

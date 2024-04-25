@@ -5,27 +5,37 @@ using UnityEngine;
 public class MoveProjectile : SpawnEnemies
 {
     public float speed;
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+    EnemyStats stats;
 
+    private void Start()
+    {
+        stats = FindObjectOfType<EnemyStats>();
+    }
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        GameObject focalpoint = FindObjectOfType<Camera>().transform.parent.gameObject;
+        transform.Translate(focalpoint.transform.position * speed * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) 
         {
-            spawnedEnemies.Remove(collision.gameObject);
-            score.AddScore(10);
-            totalEnemies--;
-            Destroy(collision.gameObject);
+            
+            
             Destroy(gameObject);
+            stats.doDamage(3);
+           
+            
+            if(stats.enemyHealth < 0)
+            {
+                spawnedEnemies.Remove(collision.gameObject);
+                Destroy(collision.gameObject);
+                totalEnemies--;
+                score.AddScore(30);
+            }
+            
+           
         }
     }
 }

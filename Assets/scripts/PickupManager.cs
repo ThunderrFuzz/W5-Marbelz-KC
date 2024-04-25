@@ -7,26 +7,77 @@ using UnityEngine;
 
 public class PickupManager : MonoBehaviour
 {
-    protected HealthManager healthManager;
-    protected ScoreingSystem score;
-    protected bool doubleFire = false;
-    protected bool activeScoreX = false;
-    public static bool onFire = false;
-    protected bool speedBoost = false;
-    protected bool nukeUsed = false;
+    public static HealthManager healthManager;
+    public static ScoreingSystem score;
+    public GameObject[] pickups;
 
-    private void Start()
+    /* static variables are needed here to prevent copies of them being made,
+       and the value from THIS script gets parsed around correctly   
+       these bools are used to toggle on and off the effects.
+     */
+
+    protected static bool onFire = false;
+    protected static bool nukeUsed = false;
+    protected static bool doubleFire = false;
+    protected static bool activeScoreX = false;
+    protected static bool speedBoost = false;
+    protected static bool hasShield = false;
+    int maxPickups = 10;
+    int currPickups;
+    float pickupTime;
+    void Start()
     {
+        //InvokeRepeating("spawnPickups", 2, 2);
+
 
         score = FindObjectOfType<ScoreingSystem>();
-       
+        
         healthManager = FindObjectOfType<HealthManager>();
+        
     }
+    private void Update()
+    {
+        
+        pickupTime += Time.deltaTime;
+        spawnPickups();
+    }
+
+    void spawnPickups()
+    {
+        SpawnEnemies enemyM = FindObjectOfType<SpawnEnemies>();  
+        if (currPickups < maxPickups || pickupTime % 30f == 0 || enemyM.newWave)
+        {
+            Instantiate(pickups[Random.Range(0, pickups.Length)], Random_Pickup_spawnpoint_in_Bounds("PickupSpawns"), Quaternion.Euler(Vector3.zero));
+            currPickups++;
+        }
+    }
+    Vector3 Random_Pickup_spawnpoint_in_Bounds(string tag)
+    {
+        // find collider with tag
+        GameObject objectWithTag = GameObject.FindGameObjectWithTag(tag);
+
+        Collider collider = objectWithTag.GetComponent<Collider>();
+
+
+        // bounds of chosen collider 
+        Bounds bounds = collider.bounds;
+
+        // creates a random point
+        Vector3 randomPoint = new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x),
+            -1.5f,
+            Random.Range(bounds.min.z, bounds.max.z)
+        );
+        return randomPoint;
+    }
+
+
 
 
     void OnCollisionEnter(Collision collision)
     {
-
+        pickupTime = 0;
+        currPickups--;
         switch (collision.gameObject.tag)
         {
             case "DoubleFire":
@@ -64,6 +115,7 @@ public class PickupManager : MonoBehaviour
 
             case "Money":
                 Destroy(collision.gameObject);
+                if (score == null) { Debug.LogWarning("Couldn't find score system inside money collisionenter "); }
                 score.AddCash(500);
                 //AddMoney(); //error
                 break;
@@ -85,6 +137,12 @@ public class PickupManager : MonoBehaviour
                 score.secret();
                 //ActivateSecret();// error 
                 break;
+            case "Shield":
+                hasShield = true;
+                Destroy(collision.gameObject);
+                activateShield();
+                break;
+
 
             default:
                 // if tag does nothing, do nothing....
@@ -112,11 +170,7 @@ public class PickupManager : MonoBehaviour
         Debug.Log("ScoreMultiplier activated: Double score for 30 seconds");
     }
 
-    void AddGemScore()
-    {
-        // error 
 
-    }
 
     void ActivateFireEffect()
     {
@@ -126,29 +180,23 @@ public class PickupManager : MonoBehaviour
 
     }
 
-    void AddMoney()
-    {
-        
 
-    }
 
     void ExplodeEnemies()
     {
-        StartCoroutine(effectDuration(1f, () => nukeUsed = false));
+        StartCoroutine(effectDuration(.5f, () => nukeUsed = false));
     }
 
     void ActivateSpeedup()
     {
         StartCoroutine(effectDuration(3f, () => speedBoost = false));
-       
+
+    }
+    void activateShield()
+    {
+        StartCoroutine(effectDuration(15f,() => hasShield = false));
     }
 
-    void ActivateSecret()
-    {
-        
-        
-       
-    }
 
     IEnumerator effectDuration(float duration, System.Action action)
     {

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3388832}
   - component: {fileID: 2315374}
   - component: {fileID: 5817119638784070077}
+  - component: {fileID: -3869384092835955024}
   m_Layer: 0
   m_Name: RepairIcon
-  m_TagString: Repair
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,3 +107,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: a23ff2708d9482e42b37fcc0c30dde67, type: 3}
+--- !u!114 &-3869384092835955024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff1b85a169b166489c26543be33dc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  bobSpeed: 0.2
+  bobHeight: 0.5

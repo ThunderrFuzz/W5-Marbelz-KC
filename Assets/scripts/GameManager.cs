@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,13 +6,14 @@ public class GameManager : MonoBehaviour
 {
     public Transform[] spawnPoints;
     private Vector3 initialPlayerPosition; 
-    protected int deathCount = 0;
+    protected static int deathCount = 0;
     protected bool gameLost;
 
 
     ScoreingSystem score;
     void Start()
     {
+        
         initialPlayerPosition = Vector3.zero;
         score = FindObjectOfType<ScoreingSystem>();
     }
@@ -29,7 +31,8 @@ public class GameManager : MonoBehaviour
     public void RecordDeath()
     {
         deathCount++;
-        score.TakeScore(deathCount*5);
+        score.TakeScore(Mathf.FloorToInt(deathCount*1.5f) );
+
         Debug.Log("Player died! Deaths: " + deathCount);
     }
 
@@ -43,9 +46,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // select a random spawn point
-            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            // select a random spawn point 
+            //referecne conflic between system, and unity engine random range 
+            Transform randomSpawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
             playerTransform.position = randomSpawnPoint.position;
+            HealthManager hm = FindObjectOfType<HealthManager>();
+            hm.Heal(50);
         }
     }
 

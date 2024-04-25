@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33118119716790622}
   - component: {fileID: 23114244185766776}
   - component: {fileID: 6918702933651285325}
+  - component: {fileID: -4522667641987575496}
   m_Layer: 0
   m_Name: Star_01
   m_TagString: Secret
@@ -106,3 +107,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f7ec8369cac1a7e4ab36747b35f91c24, type: 3}
+--- !u!114 &-4522667641987575496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729945580980676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff1b85a169b166489c26543be33dc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  bobSpeed: 0.2
+  bobHeight: 0.5

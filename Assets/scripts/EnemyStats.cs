@@ -5,17 +5,12 @@ using UnityEngine;
 public class EnemyStats : MonoBehaviour
 {
     public float impactForce;
+    public float enemyHealth = 15;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void doDamage(float damage)
     {
-        
+        enemyHealth -= damage;
     }
 
 

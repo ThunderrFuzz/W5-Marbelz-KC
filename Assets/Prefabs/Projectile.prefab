@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6457115054740444862}
   - component: {fileID: 7343410488345782595}
   - component: {fileID: 2784049398822049825}
-  - component: {fileID: 3933703642800035370}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Projectile
@@ -121,20 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: []
   enemySpawns: []
-  maxEnemies: 0
   spawnDelay: 2
   enemyHealth: 15
   fireParticleSystemPrefab: {fileID: 0}
   speed: 17
---- !u!114 &3933703642800035370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2864538356208625626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5b18988ed041840a1f0bfc8c18906e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

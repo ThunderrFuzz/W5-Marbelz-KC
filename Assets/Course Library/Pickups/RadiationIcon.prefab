@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3326808}
   - component: {fileID: 2394874}
   - component: {fileID: 7541010435155563985}
+  - component: {fileID: 8884909804265654342}
   m_Layer: 0
   m_Name: RadiationIcon
   m_TagString: Nuke
@@ -106,3 +107,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 658d96199cc7d3b4880fa76714523436, type: 3}
+--- !u!114 &8884909804265654342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff1b85a169b166489c26543be33dc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  bobSpeed: 0.2
+  bobHeight: 0.5

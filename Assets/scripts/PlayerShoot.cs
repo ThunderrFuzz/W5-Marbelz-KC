@@ -23,6 +23,7 @@ public class PlayerShoot : PickupManager
         
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
+            
             Vector3 spawnPosition = playerPos.position + new Vector3(xOffset, 0f, 0f);
             if (!doubleFire)
             {

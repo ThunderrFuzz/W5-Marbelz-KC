@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class PlayArea : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider col)
     {
-        
-        if (collision.gameObject.CompareTag("Despawner"))
+        if ((col.tag == "Player" || col.tag == "Projectile" || col.tag == "Enemy") && col.tag == "Despawner")
         {
+            Destroy(col.gameObject);
             
-            Destroy(gameObject);
         }
+
     }
 }
+

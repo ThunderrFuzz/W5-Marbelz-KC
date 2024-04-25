@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3375810}
   - component: {fileID: 2309454}
   - component: {fileID: 4523469598280160290}
+  - component: {fileID: -8132883497481131711}
   m_Layer: 0
   m_Name: MultiplierIcon
   m_TagString: DoubleFire
@@ -106,3 +107,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7b2e43c7f0b75f54789417d03a4eb3cb, type: 3}
+--- !u!114 &-8132883497481131711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff1b85a169b166489c26543be33dc58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  bobSpeed: 0.2
+  bobHeight: 0.5
