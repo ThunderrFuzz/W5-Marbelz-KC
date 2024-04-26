@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         {
             RecordDeath();
             ResetPlayer(playerTransform);
+            //set vel to 0
         }
     }
 
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
             Transform randomSpawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
             playerTransform.position = randomSpawnPoint.position;
             HealthManager hm = FindObjectOfType<HealthManager>();
+            
             hm.Heal(50);
         }
     }

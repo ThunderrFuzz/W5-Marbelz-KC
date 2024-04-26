@@ -33,7 +33,7 @@ public class Boss : EnemyStats
         }
 
         // if half health, perform "big" attack
-        if (enemyHealth <= maxhealth / 2)
+        if (enemyHealth <= maxhealth / 2 )
         {
             // Spawn multiple attacks
             for (int i = 0; i < 15; i++)

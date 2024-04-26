@@ -23,17 +23,17 @@ public class PlayerShoot : PickupManager
         
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            
+            GameObject focalpoint = FindObjectOfType<Camera>().transform.parent.gameObject;
             Vector3 spawnPosition = playerPos.position + new Vector3(xOffset, 0f, 0f);
             if (!doubleFire)
             {
-                Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+                Instantiate(projectilePrefab, spawnPosition + focalpoint.transform.forward, focalpoint.transform.rotation);
             }
             else
             { 
                 Vector3 spawnPosition2 = playerPos.position + new Vector3(-xOffset, 0f, 0f);
-                Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
-                Instantiate(projectilePrefab, spawnPosition2, Quaternion.identity);
+                Instantiate(projectilePrefab, spawnPosition + focalpoint.transform.forward, focalpoint.transform.rotation);
+                Instantiate(projectilePrefab, spawnPosition2 + focalpoint.transform.forward, focalpoint.transform.rotation);
             }
         }
     }

@@ -14,8 +14,8 @@ public class MoveProjectile : SpawnEnemies
     // Update is called once per frame
     void Update()
     {
-        GameObject focalpoint = FindObjectOfType<Camera>().transform.parent.gameObject;
-        transform.Translate(focalpoint.transform.position * speed * Time.deltaTime);
+        
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,7 +24,7 @@ public class MoveProjectile : SpawnEnemies
             
             
             Destroy(gameObject);
-            stats.doDamage(3);
+            stats.doDamage(2);
            
             
             if(stats.enemyHealth < 0)
@@ -36,6 +36,11 @@ public class MoveProjectile : SpawnEnemies
             }
             
            
+        }
+
+        if (collision.gameObject.CompareTag("Despawner"))
+        {
+            Destroy(gameObject);
         }
     }
 }

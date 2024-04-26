@@ -19,6 +19,8 @@ TagManager:
   - Despawner
   - PickupSpawns
   - Shield
+  - Powerup
+  - PlayerGoal
   layers:
   - Default
   - TransparentFX

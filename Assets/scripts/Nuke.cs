@@ -7,11 +7,11 @@ using UnityEngine.AI;
 public class Nuke : SpawnEnemies
 {
     public float explosionForce = 10000f;
-    EnemyStats stats;
+    static EnemyStats stats;
 
     private void Start()
     {
-        stats = FindObjectOfType<EnemyStats>(); 
+         
     }
     void Update()
     {
@@ -20,7 +20,6 @@ public class Nuke : SpawnEnemies
             List<GameObject> enemiesCopy = new List<GameObject>(spawnedEnemies);
             foreach (GameObject enemy in enemiesCopy)
             {
-                stats.doDamage(45);
 
                 // other way theya re going - away from player
                 Vector3 oppositeDirection = -enemy.GetComponent<NavMeshAgent>().velocity.normalized;

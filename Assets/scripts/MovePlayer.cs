@@ -47,5 +47,6 @@ public class PlayerMove : PickupManager
             score.TakeScore(5);
             rb.AddForce(impactDir * impactForce, ForceMode.Impulse);
         }
+        
     }
 }

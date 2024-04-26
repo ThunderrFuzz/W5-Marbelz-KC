@@ -27,7 +27,7 @@ public class PickupManager : MonoBehaviour
     float pickupTime;
     void Start()
     {
-        //InvokeRepeating("spawnPickups", 2, 2);
+        //InvokeRepeating("spawnPickups", 2, .1f);
 
 
         score = FindObjectOfType<ScoreingSystem>();
@@ -39,17 +39,21 @@ public class PickupManager : MonoBehaviour
     {
         
         pickupTime += Time.deltaTime;
-        spawnPickups();
+        SpawnEnemies enemyM = FindObjectOfType<SpawnEnemies>();
+        if (pickupTime % 5f == 0 || enemyM.newWave)
+        {
+            spawnPickups();
+        }
     }
 
     void spawnPickups()
     {
-        SpawnEnemies enemyM = FindObjectOfType<SpawnEnemies>();  
-        if (currPickups < maxPickups || pickupTime % 30f == 0 || enemyM.newWave)
+        if (currPickups < maxPickups)
         {
             Instantiate(pickups[Random.Range(0, pickups.Length)], Random_Pickup_spawnpoint_in_Bounds("PickupSpawns"), Quaternion.Euler(Vector3.zero));
             currPickups++;
         }
+        
     }
     Vector3 Random_Pickup_spawnpoint_in_Bounds(string tag)
     {
@@ -175,7 +179,7 @@ public class PickupManager : MonoBehaviour
     void ActivateFireEffect()
     {
 
-        StartCoroutine(effectDuration(5f, () => onFire = false));
+        StartCoroutine(effectDuration(3f, () => onFire = false));
 
 
     }
@@ -184,7 +188,7 @@ public class PickupManager : MonoBehaviour
 
     void ExplodeEnemies()
     {
-        StartCoroutine(effectDuration(.5f, () => nukeUsed = false));
+        StartCoroutine(effectDuration(.01f, () => nukeUsed = false));
     }
 
     void ActivateSpeedup()

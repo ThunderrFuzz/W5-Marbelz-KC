@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f163ec2086892a149bb653516a430e3b, type: 2}
+  - {fileID: 2100000, guid: 9e10a4e0fea6edb4e93ea5e04f81cf23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,9 +118,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3225e6db11e504a4086be8b699448661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickups: []
   enemyPrefab: []
   enemySpawns: []
+  maxEnemies: 0
   spawnDelay: 2
-  enemyHealth: 15
   fireParticleSystemPrefab: {fileID: 0}
+  waveCount: 0
+  minibossPrefab: {fileID: 0}
+  bossPrefab: {fileID: 0}
+  newWave: 0
+  waveUI: {fileID: 0}
+  remainingEnemies: {fileID: 0}
   speed: 17

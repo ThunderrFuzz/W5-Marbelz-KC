@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e14657754955b764385b0456b75bf981, type: 2}
+  - {fileID: 2100000, guid: c383c1a6b8debd44eb6f75e84e6cd360, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2209b01e0170e9741a4cc3905f46ed57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactForce: 1600
+  impactForce: 2500
   enemyHealth: 50
   bossAttackPrefab: {fileID: 1918337330620435917, guid: a6cb0379565fa4f47b7826205cadf589,
     type: 3}
